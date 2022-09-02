@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style></style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">react-tutorial</div>
+  </body>
+  <script type="text/babel">
+    //    import React from "react";
+    // import { BsPencilSquare } from "react-icons/bs";
+    // import useThema from "./useThema";
+
+    // const NavTemplate = ({handleOpen}) => {
+    //   const themaSwither = useThema();
+    //   return (
+    //     <nav>
+    //       <div className="pageTitle">
+    //         <h3 style={{ margin: "0px" }}>
+    //           <a href="http://localhost:3000/blogs">Blogss</a>
+    //         </h3>
+    //       </div>
+    //       <div style={{display:'flex' , alignItems:'center'}}>
+    //         <div>
+    //           <p onClick={handleOpen}>
+    //             <BsPencilSquare size={"20px"}  style={{ paddingRight: "5px" }} />
+    //             New Blog
+    //           </p>
+    //         </div>
+    //         <div>{themaSwither}</div>
+    //       </div>
+    //     </nav>
+    //   );
+    // };
+    // export default NavTemplate;
+    //////////////////////////////**
+    import React, { useEffect, useState } from "react";
+    const useThema = () => {
+      const [mode, setMode] = useState(() => localStorage.getItem("mode"));
+      useEffect(() => {
+        if (mode === "🌙 ") {
+          document.body.classList.remove("light-mode");
+          document.body.classList.add("dark-mode");
+          localStorage.setItem("mode", "🌙 ");
+        } else {
+          document.body.classList.remove("dark-mode");
+          document.body.classList.add("light-mode");
+          localStorage.setItem("mode", "☀️");
+        }
+      }, [mode]);
+      return (
+        <div>
+          <p onClick={() => setMode((mode) => (mode === "🌙 " ? "☀️" : "🌙 "))}>
+            <small style={{ fontSize: "x-large", margin: "0px" }}>
+              {mode === "🌙 " ? "☀️" : "🌙 "}
+            </small>
+          </p>
+        </div>
+      );
+    };
+
+    export default useThema;
+    ReactDOM.render(<Component />, document.getElementById("root"));
+  </script>
+</html>
